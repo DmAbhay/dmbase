@@ -96,7 +96,7 @@ public class EncryptionDecryptionUtil {
     /**
      * Encrypts a message using a provided AES key.
      */
-    public static String encryptWithKey(String message, SecretKey secretKey)  {
+    public String encryptWithKey(String message, SecretKey secretKey)  {
         try {
         	Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
@@ -112,7 +112,7 @@ public class EncryptionDecryptionUtil {
     /**
      * Decrypts a message using a provided AES key.
      */
-    public static String decryptWithKey(String encryptedMessage, SecretKey secretKey) {
+    public String decryptWithKey(String encryptedMessage, SecretKey secretKey) {
         try {
         	Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
@@ -129,105 +129,5 @@ public class EncryptionDecryptionUtil {
 
 
 
-//package dataman.dmbase.encryptiondecryptionutil;
-//
-//import java.security.GeneralSecurityException;
-//import java.util.Base64;
-//
-//import javax.crypto.Cipher;
-//import javax.crypto.KeyGenerator;
-//import javax.crypto.SecretKey;
-//
-//import dataman.dmbase.exception.EncryptionDecryptionException;
-//import lombok.AllArgsConstructor;
-//import lombok.Data;
-//
-//@Data
-//@AllArgsConstructor
-//public class EncryptionDecryptionUtil {
-//
-//    private SecretKey secretKey;
-//
-//    
-//    public EncryptionDecryptionUtil() {
-//        try {
-//            this.secretKey = generateAESKey();
-//        } catch (Exception e) {
-//            throw new RuntimeException("Error generating AES key", e);
-//        }
-//    }
-//
-//    /**
-//     * Generates an AES secret key.
-//     */
-//    public static SecretKey generateAESKey() throws Exception {
-//        KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
-//        keyGenerator.init(256);
-//        return keyGenerator.generateKey();
-//    }
-//
-//    
-//    public SecretKey getSecretKey() {
-//        return secretKey;
-//    }
-//
-//    /**
-//     * Encrypts a plain text message.
-//     */
-//    public String encrypt(String message) {
-////        Cipher cipher = Cipher.getInstance("AES");
-////        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-////        byte[] encryptedBytes = cipher.doFinal(message.getBytes());
-////        return Base64.getEncoder().encodeToString(encryptedBytes);
-//        
-//        try {
-//            Cipher cipher = Cipher.getInstance("AES");
-//            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-//            byte[] encryptedBytes = cipher.doFinal(message.getBytes());
-//            return Base64.getEncoder().encodeToString(encryptedBytes);
-//        } catch (GeneralSecurityException e) {
-//            throw new EncryptionDecryptionException("Encryption failed: " + e.getMessage());
-//        } catch (Exception e) {
-//            throw new EncryptionDecryptionException("Unexpected error during encryption: " + e.getMessage());
-//        }
-//        
-//    }
-//
-//    /**
-//     * Decrypts an encrypted message.
-//     */
-//    public String decrypt(String encryptedMessage) {
-//    	try {
-//        	Cipher cipher = Cipher.getInstance("AES");
-//            cipher.init(Cipher.DECRYPT_MODE, secretKey);
-//            byte[] decodedBytes = Base64.getDecoder().decode(encryptedMessage);
-//            byte[] decryptedBytes = cipher.doFinal(decodedBytes);
-//            return new String(decryptedBytes);
-//        }catch (GeneralSecurityException e) {
-//            throw new EncryptionDecryptionException("Decryption failed: " + e.getMessage());
-//        } catch (Exception e) {
-//            throw new EncryptionDecryptionException("Unexpected error during decryption: " + e.getMessage());
-//        }
-//    }
-//
-//    /**
-//     * Encrypts a message using a provided AES key.
-//     */
-//    public static String encryptWithKey(String message, SecretKey secretKey) throws Exception {
-//        Cipher cipher = Cipher.getInstance("AES");
-//        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-//        byte[] encryptedBytes = cipher.doFinal(message.getBytes());
-//        return Base64.getEncoder().encodeToString(encryptedBytes);
-//    }
-//
-//    /**
-//     * Decrypts a message using a provided AES key.
-//     */
-//    public static String decryptWithKey(String encryptedMessage, SecretKey secretKey) throws Exception {
-//        Cipher cipher = Cipher.getInstance("AES");
-//        cipher.init(Cipher.DECRYPT_MODE, secretKey);
-//        byte[] decodedBytes = Base64.getDecoder().decode(encryptedMessage);
-//        byte[] decryptedBytes = cipher.doFinal(decodedBytes);
-//        return new String(decryptedBytes);
-//    }
-//}
+
+

@@ -19,17 +19,24 @@ public class RedisObjectUtil {
     }
 
     // Save the object as a hash and set a timeout on the entire key
-    public void saveObjectAsHash(String objectKey, Map<String, Object> objectData, long timeout, TimeUnit timeUnit) {
+    public void saveJson(String objectKey, Map<String, Object> objectData, long timeout, TimeUnit timeUnit) {
         redisTemplateForObject.opsForHash().putAll(objectKey, objectData);
         // Set expiration for the entire hash
         redisTemplateForObject.expire(objectKey, timeout, timeUnit);
     }
-    public void addFieldToHash(String objectKey, String fieldKey, Object fieldValue) {
+    
+    
+    public void saveObject(String objectKey, Map<String, String> objectData, long timeout, TimeUnit timeUnit) {
+        redisTemplateForObject.opsForHash().putAll(objectKey, objectData);
+        // Set expiration for the entire hash
+        redisTemplateForObject.expire(objectKey, timeout, timeUnit);
+    }
+    public void addFieldToObject(String objectKey, String fieldKey, Object fieldValue) {
         redisTemplateForObject.opsForHash().put(objectKey, fieldKey, fieldValue);
-        redisTemplateForObject.expire(objectKey, 300, TimeUnit.SECONDS);
+        //redisTemplateForObject.expire(objectKey, 300, TimeUnit.SECONDS);
     }
     
-    public void deleteFieldFromHash(String objectKey, String fieldKey) {
+    public void deleteFieldFromObject(String objectKey, String fieldKey) {
         redisTemplateForObject.opsForHash().delete(objectKey, fieldKey);
     }
 
@@ -42,10 +49,9 @@ public class RedisObjectUtil {
         return redisTemplateForObject.opsForHash().entries(objectKey);
     }
     
-    public void deleteHash(String objectKey) {
+    public void deleteObject(String objectKey) {
         redisTemplateForObject.delete(objectKey);
     }
-
 
 }
 
